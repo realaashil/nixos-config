@@ -1,17 +1,8 @@
 { inputs, pkgs, ... }:
 {
-  imports = [ inputs.zen-browser.homeModules.beta ];
-
-  programs.zen-browser.enable = true;
-
   xdg.mimeApps =
     let
-      value =
-        let
-          system = pkgs.stdenv.hostPlatform.system;
-          zen-browser = inputs.zen-browser.packages.${system}.beta;
-        in
-        zen-browser.meta.desktopFileName;
+      value = "google-chrome.desktop";
 
       associations = builtins.listToAttrs (
         map (name: { inherit name value; }) [
@@ -37,3 +28,4 @@
       defaultApplications = associations;
     };
 }
+

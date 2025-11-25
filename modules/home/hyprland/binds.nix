@@ -11,14 +11,14 @@
 
       # keybindings
       "$mainMod, Return, exec, ghostty --gtk-single-instance=true"
-      "ALT, Return, exec, [float; size 1111 700] ghostty"
       "$mainMod SHIFT, Return, exec, [fullscreen] ghostty"
       "$mainMod, B, exec, [workspace 1 silent] zen-beta"
       "$mainMod, Q, killactive,"
       "$mainMod, F, fullscreen, 0"
       "$mainMod SHIFT, F, fullscreen, 1"
       "$mainMod, Space, exec, toggle-float"
-      "$mainMod, D, exec, vicinae vicinae://toggle"
+      "$mainMod, D, exec, rofi -show drun || pkill rofi"
+      "$mainMod, TAB, exec, google-chrome-stable"
       "$mainMod SHIFT, D, exec, webcord --enable-features=UseOzonePlatform --ozone-platform=wayland"
       "$mainMod SHIFT, S, exec, hyprctl dispatch exec '[workspace 5 silent] SoundWireServer'"
       "$mainMod, Escape, exec, swaylock"
@@ -118,6 +118,7 @@
       "$mainMod ALT, k, moveactive, 0 -80"
       "$mainMod ALT, l, moveactive, 80 0"
 
+
       # media and volume controls
       # ",XF86AudioMute,exec, pamixer -t"
       ",XF86AudioPlay,exec, playerctl play-pause"
@@ -129,7 +130,7 @@
       "$mainMod, mouse_up, workspace, e+1"
 
       # clipboard manager
-      "$mainMod, V, exec, vicinae vicinae://extensions/vicinae/clipboard/history"
+      "$mainMod, V, exec, iphist list | rofi -dmenu -theme-str 'window {width: 50%;} listview {columns: 1;}' | cliphist decode | wl-copy"
     ];
 
     # mouse binding

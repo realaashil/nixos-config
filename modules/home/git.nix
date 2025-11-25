@@ -1,12 +1,11 @@
-{ pkgs, username, ... }:
-{
+{ pkgs, username, ... }: {
   programs.git = {
     enable = true;
 
     settings = {
       user = {
-        name = "Frost-Phoenix ";
-        email = "67cyril6767@gmail.com";
+        name = "realaashil";
+        email = "singhalaashil@gmail.com";
       };
 
       init.defaultBranch = "main";
@@ -16,11 +15,8 @@
       color.ui = true;
 
       url = {
-        "git@github.com:".insteadOf = [
-          "gh:"
-          "https://github.com/"
-        ];
-        "git@github.com:frost-phoenix/".insteadOf = "fp:";
+        "git@github.com:".insteadOf = [ "gh:" "https://github.com/" ];
+        "git@github.com:realaashil/".insteadOf = "my:";
       };
 
       core.excludesFile = "/home/${username}/.config/git/.gitignore";
@@ -39,10 +35,7 @@
     };
   };
 
-  home.packages = with pkgs; [
-    gh
-    serie
-  ];
+  home.packages = with pkgs; [ gh serie ];
 
   xdg.configFile."git/.gitignore".text = ''
     .vscode
@@ -77,8 +70,11 @@
 
     glg = "serie";
     glog = "git log --oneline --decorate --graph";
-    glol = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
-    glola = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all";
-    glols = "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat";
+    glol =
+      "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset'";
+    glola =
+      "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --all";
+    glols =
+      "git log --graph --pretty='%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset' --stat";
   };
 }

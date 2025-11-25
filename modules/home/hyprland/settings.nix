@@ -16,7 +16,7 @@
     };
 
     general = {
-      "$mainMod" = "SUPER";
+      "$mainMod" = "ALT";
       layout = "dwindle";
       gaps_in = 6;
       gaps_out = 12;

@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   programs = {
     steam = {
-      enable = false;
+      enable = true;
 
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = false;
@@ -15,10 +14,7 @@
     gamescope = {
       enable = true;
       capSysNice = true;
-      args = [
-        "--rt"
-        "--expose-wayland"
-      ];
+      args = [ "--rt" "--expose-wayland" ];
     };
   };
 }

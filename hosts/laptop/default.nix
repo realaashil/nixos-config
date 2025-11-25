@@ -1,15 +1,13 @@
-{ pkgs, config, ... }:
-{
-  imports = [
-    ./hardware-configuration.nix
-    ./../../modules/core
-  ];
-
+{ pkgs, config, ... }: {
+  imports = [ ./hardware-configuration.nix ./../../modules/core ];
   environment.systemPackages = with pkgs; [
     acpi
     brightnessctl
     cpupower-gui
     powertop
+    google-chrome
+    spotify
+    nodejs_24
   ];
 
   services = {
@@ -49,15 +47,43 @@
   };
 
   powerManagement.cpuFreqGovernor = "performance";
+  services.xserver.videoDrivers = [ "nvidia" ];
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+    extraPackages = with pkgs; [
+      libva-vdpau-driver
+      libvdpau
+      libvdpau-va-gl
+      nvidia-vaapi-driver
+      vdpauinfo
+      libva
+      libva-utils
+    ];
+  };
+
+  hardware.nvidia.prime = {
+    offload = {
+      enable = true;
+      enableOffloadCmd = true;
+    };
+
+    nvidiaBusId = "PCI:1:0:0";
+    amdgpuBusId = "PCI:6:0:0";
+  };
+  hardware.nvidia = {
+    modesetting.enable = true;
+    powerManagement.enable = true;
+    powerManagement.finegrained = true;
+    nvidiaPersistenced = false;
+    open = false;
+    nvidiaSettings = true;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
+  };
 
   boot = {
     kernelModules = [ "acpi_call" ];
-    extraModulePackages =
-      with config.boot.kernelPackages;
-      [
-        acpi_call
-        cpupower
-      ]
-      ++ [ pkgs.cpupower-gui ];
+    extraModulePackages = with config.boot.kernelPackages;
+      [ acpi_call cpupower ] ++ [ pkgs.cpupower-gui ];
   };
 }
