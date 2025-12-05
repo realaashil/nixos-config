@@ -1,4 +1,4 @@
-{ pkgs, config, ... }: {
+{ pkgs, config, inputs, ... }: {
   imports = [ ./hardware-configuration.nix ./../../modules/core ];
   environment.systemPackages = with pkgs; [
     acpi
@@ -8,6 +8,9 @@
     google-chrome
     spotify
     nodejs_24
+    telegram-desktop
+    apktool
+    inputs.sumatrapdf.packages.${pkgs.system}.sumatrapdf
   ];
 
   services = {

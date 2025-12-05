@@ -13,6 +13,8 @@
     nix-gaming.url = "github:fufexan/nix-gaming";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
 
+    sumatrapdf.url = "github:emmanuelrosa/sumatrapdf-nix";
+
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,8 +30,7 @@
     zen-browser.url = "github:0xc000022070/zen-browser-flake/beta";
   };
 
-  outputs =
-    { nixpkgs, self, ... }@inputs:
+  outputs = { nixpkgs, self, ... }@inputs:
     let
       username = "aashil";
       system = "x86_64-linux";
@@ -38,8 +39,7 @@
         config.allowUnfree = true;
       };
       lib = nixpkgs.lib;
-    in
-    {
+    in {
       nixosConfigurations = {
         desktop = nixpkgs.lib.nixosSystem {
           inherit system;
