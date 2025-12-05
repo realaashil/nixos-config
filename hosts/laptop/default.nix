@@ -2,15 +2,16 @@
   imports = [ ./hardware-configuration.nix ./../../modules/core ];
   environment.systemPackages = with pkgs; [
     acpi
+    apktool
     brightnessctl
     cpupower-gui
-    powertop
+    go
     google-chrome
-    spotify
-    nodejs_24
-    telegram-desktop
-    apktool
     inputs.sumatrapdf.packages.${pkgs.system}.sumatrapdf
+    nodejs_24
+    powertop
+    spotify
+    telegram-desktop
   ];
 
   services = {
